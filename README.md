@@ -40,8 +40,9 @@ graph TD
     ```
 
 3.  **Run the System**:
+    Make sure you are in the project root directory (`Development/`), then run:
     ```bash
-    python main.py --image path/to/image.jpg --question "Your question here?"
+    python main.py --image data/test_signboard.png --question "What percentage is the sale?"
     ```
 
 ## Phase 2 Progress

@@ -1,12 +1,15 @@
 from transformers import BlipProcessor, BlipForQuestionAnswering
 import torch
 from PIL import Image
+import os
 
 class VQAModel:
-    def __init__(self, model_id="Salesforce/blip-vqa-base"):
+    def __init__(self, model_id="Salesforce/blip-vqa-base", cache_dir="./models/blip"):
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.processor = BlipProcessor.from_pretrained(model_id)
-        self.model = BlipForQuestionAnswering.from_pretrained(model_id).to(self.device)
+        os.makedirs(cache_dir, exist_ok=True)
+        print(f"Loading BLIP model into {cache_dir}...")
+        self.processor = BlipProcessor.from_pretrained(model_id, cache_dir=cache_dir)
+        self.model = BlipForQuestionAnswering.from_pretrained(model_id, cache_dir=cache_dir).to(self.device)
 
     def get_answer(self, image_path, question):
         """Generate answer for a given image and question."""

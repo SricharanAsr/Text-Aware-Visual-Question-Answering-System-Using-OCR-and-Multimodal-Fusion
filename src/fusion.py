@@ -3,9 +3,12 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
 class MultimodalFusion:
-    def __init__(self, model_name='paraphrase-MiniLM-L3-v2'):
+    def __init__(self, model_name='paraphrase-MiniLM-L3-v2', cache_dir="./models/fusion"):
         # Using a lightweight sentence transformer for filtering
-        self.similarity_model = SentenceTransformer(model_name)
+        import os
+        os.makedirs(cache_dir, exist_ok=True)
+        print(f"Loading Similarity model into {cache_dir}...")
+        self.similarity_model = SentenceTransformer(model_name, cache_folder=cache_dir)
 
     def filter_ocr_tokens(self, question, ocr_data, threshold=0.3):
         """Filter OCR tokens based on semantic similarity to the question."""

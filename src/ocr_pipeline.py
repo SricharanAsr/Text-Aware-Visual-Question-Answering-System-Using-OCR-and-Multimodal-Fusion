@@ -4,8 +4,11 @@ import numpy as np
 import re
 
 class OCRProcessor:
-    def __init__(self, languages=['en']):
-        self.reader = easyocr.Reader(languages)
+    def __init__(self, languages=['en'], model_storage_directory="./models/ocr"):
+        import os
+        os.makedirs(model_storage_directory, exist_ok=True)
+        print(f"Loading EasyOCR models into {model_storage_directory}...")
+        self.reader = easyocr.Reader(languages, model_storage_directory=model_storage_directory)
 
     def preprocess_image(self, image_path):
         """Preprocess image for better OCR results."""

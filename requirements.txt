@@ -1,0 +1,9 @@
+torch
+transformers
+easyocr
+opencv-python
+numpy
+pillow
+pypdf
+scipy
+sentence-transformers

@@ -1,0 +1,16 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Data & Models
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+
+# Project specific
+extracted_content.txt
+extract_pdfs.py
+*.pdf
